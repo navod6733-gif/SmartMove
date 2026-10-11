@@ -56,3 +56,55 @@ INSERT INTO passengers (full_name, email, phone, password_hash, registration_dat
 INSERT INTO passengers (full_name, email, phone, password_hash, registration_date, status) VALUES ('Dinesh Kariyawasam','dinesh.k@example.com','0712345610','$2y$10$examplehash0000000000000000000000000000000000000010', DATE '2023-04-14','ACTIVE');
 INSERT INTO passengers (full_name, email, phone, password_hash, registration_date, status) VALUES ('Piumi Herath','piumi.h@example.com','0712345611','$2y$10$examplehash0000000000000000000000000000000000000011', DATE '2023-05-01','ACTIVE');
 INSERT INTO passengers (full_name, email, phone, password_hash, registration_date, status) VALUES ('Ravindu Senanayake','ravindu.s@example.com','0712345612','$2y$10$examplehash0000000000000000000000000000000000000012', DATE '2023-05-19','INACTIVE');
+
+INSERT INTO trips (route_id, vehicle_id, driver_id, trip_date, departure_time, arrival_time, fare, status) VALUES
+ ((SELECT route_id FROM routes WHERE route_name='Colombo - Kandy Express'),(SELECT vehicle_id FROM vehicles WHERE vehicle_number='SM-B-001'),(SELECT driver_id FROM drivers WHERE license_number='DL-LK-10021'),
+  DATE '2025-09-01', TIMESTAMP '2025-09-01 06:00:00', TIMESTAMP '2025-09-01 09:00:00', 850,'COMPLETED');
+INSERT INTO trips (route_id, vehicle_id, driver_id, trip_date, departure_time, arrival_time, fare, status) VALUES
+ ((SELECT route_id FROM routes WHERE route_name='Colombo - Kandy Express'),(SELECT vehicle_id FROM vehicles WHERE vehicle_number='SM-B-001'),(SELECT driver_id FROM drivers WHERE license_number='DL-LK-10021'),
+  DATE '2025-09-08', TIMESTAMP '2025-09-08 06:00:00', TIMESTAMP '2025-09-08 09:00:00', 850,'COMPLETED');
+INSERT INTO trips (route_id, vehicle_id, driver_id, trip_date, departure_time, arrival_time, fare, status) VALUES
+ ((SELECT route_id FROM routes WHERE route_name='Colombo - Kandy Express'),(SELECT vehicle_id FROM vehicles WHERE vehicle_number='SM-B-002'),(SELECT driver_id FROM drivers WHERE license_number='DL-LK-10022'),
+  DATE '2025-09-15', TIMESTAMP '2025-09-15 14:00:00', TIMESTAMP '2025-09-15 17:00:00', 850,'COMPLETED');
+INSERT INTO trips (route_id, vehicle_id, driver_id, trip_date, departure_time, arrival_time, fare, status) VALUES
+ ((SELECT route_id FROM routes WHERE route_name='Colombo - Galle Coastal'),(SELECT vehicle_id FROM vehicles WHERE vehicle_number='SM-B-003'),(SELECT driver_id FROM drivers WHERE license_number='DL-LK-10023'),
+  DATE '2025-09-02', TIMESTAMP '2025-09-02 07:00:00', TIMESTAMP '2025-09-02 09:30:00', 700,'COMPLETED');
+INSERT INTO trips (route_id, vehicle_id, driver_id, trip_date, departure_time, arrival_time, fare, status) VALUES
+ ((SELECT route_id FROM routes WHERE route_name='Colombo - Galle Coastal'),(SELECT vehicle_id FROM vehicles WHERE vehicle_number='SM-B-003'),(SELECT driver_id FROM drivers WHERE license_number='DL-LK-10023'),
+  DATE '2025-09-09', TIMESTAMP '2025-09-09 07:00:00', TIMESTAMP '2025-09-09 09:30:00', 700,'COMPLETED');
+INSERT INTO trips (route_id, vehicle_id, driver_id, trip_date, departure_time, arrival_time, fare, status) VALUES
+ ((SELECT route_id FROM routes WHERE route_name='Colombo - Galle Coastal'),(SELECT vehicle_id FROM vehicles WHERE vehicle_number='SM-B-003'),(SELECT driver_id FROM drivers WHERE license_number='DL-LK-10023'),
+  DATE '2025-09-16', TIMESTAMP '2025-09-16 07:00:00', TIMESTAMP '2025-09-16 09:30:00', 700,'COMPLETED');
+INSERT INTO trips (route_id, vehicle_id, driver_id, trip_date, departure_time, arrival_time, fare, status) VALUES
+ ((SELECT route_id FROM routes WHERE route_name='Negombo - Colombo Commuter'),(SELECT vehicle_id FROM vehicles WHERE vehicle_number='SM-V-001'),(SELECT driver_id FROM drivers WHERE license_number='DL-LK-10024'),
+  DATE '2025-09-01', TIMESTAMP '2025-09-01 06:30:00', TIMESTAMP '2025-09-01 07:30:00', 250,'COMPLETED');
+INSERT INTO trips (route_id, vehicle_id, driver_id, trip_date, departure_time, arrival_time, fare, status) VALUES
+ ((SELECT route_id FROM routes WHERE route_name='Negombo - Colombo Commuter'),(SELECT vehicle_id FROM vehicles WHERE vehicle_number='SM-V-001'),(SELECT driver_id FROM drivers WHERE license_number='DL-LK-10024'),
+  DATE '2025-09-03', TIMESTAMP '2025-09-03 06:30:00', TIMESTAMP '2025-09-03 07:30:00', 250,'COMPLETED');
+INSERT INTO trips (route_id, vehicle_id, driver_id, trip_date, departure_time, arrival_time, fare, status) VALUES
+ ((SELECT route_id FROM routes WHERE route_name='Negombo - Colombo Commuter'),(SELECT vehicle_id FROM vehicles WHERE vehicle_number='SM-V-001'),(SELECT driver_id FROM drivers WHERE license_number='DL-LK-10024'),
+  DATE '2025-09-05', TIMESTAMP '2025-09-05 06:30:00', TIMESTAMP '2025-09-05 07:30:00', 250,'COMPLETED');
+INSERT INTO trips (route_id, vehicle_id, driver_id, trip_date, departure_time, arrival_time, fare, status) VALUES
+ ((SELECT route_id FROM routes WHERE route_name='Negombo - Colombo Commuter'),(SELECT vehicle_id FROM vehicles WHERE vehicle_number='SM-V-001'),(SELECT driver_id FROM drivers WHERE license_number='DL-LK-10024'),
+  DATE '2025-09-08', TIMESTAMP '2025-09-08 06:30:00', TIMESTAMP '2025-09-08 07:30:00', 250,'COMPLETED');
+INSERT INTO trips (route_id, vehicle_id, driver_id, trip_date, departure_time, arrival_time, fare, status) VALUES
+ ((SELECT route_id FROM routes WHERE route_name='Negombo - Colombo Commuter'),(SELECT vehicle_id FROM vehicles WHERE vehicle_number='SM-V-002'),(SELECT driver_id FROM drivers WHERE license_number='DL-LK-10025'),
+  DATE '2025-09-10', TIMESTAMP '2025-09-10 17:00:00', TIMESTAMP '2025-09-10 18:00:00', 250,'COMPLETED');
+INSERT INTO trips (route_id, vehicle_id, driver_id, trip_date, departure_time, arrival_time, fare, status) VALUES
+ ((SELECT route_id FROM routes WHERE route_name='Colombo - Jaffna Overnight'),(SELECT vehicle_id FROM vehicles WHERE vehicle_number='SM-B-002'),(SELECT driver_id FROM drivers WHERE license_number='DL-LK-10022'),
+  DATE '2025-09-04', TIMESTAMP '2025-09-04 21:00:00', TIMESTAMP '2025-09-05 04:00:00', 2200,'COMPLETED');
+INSERT INTO trips (route_id, vehicle_id, driver_id, trip_date, departure_time, arrival_time, fare, status) VALUES
+ ((SELECT route_id FROM routes WHERE route_name='Colombo - Jaffna Overnight'),(SELECT vehicle_id FROM vehicles WHERE vehicle_number='SM-B-002'),(SELECT driver_id FROM drivers WHERE license_number='DL-LK-10022'),
+  DATE '2025-09-18', TIMESTAMP '2025-09-18 21:00:00', TIMESTAMP '2025-09-19 04:00:00', 2200,'COMPLETED');
+INSERT INTO trips (route_id, vehicle_id, driver_id, trip_date, departure_time, arrival_time, fare, status) VALUES
+ ((SELECT route_id FROM routes WHERE route_name='Colombo - Nuwara Eliya Hill'),(SELECT vehicle_id FROM vehicles WHERE vehicle_number='SM-C-001'),(SELECT driver_id FROM drivers WHERE license_number='DL-LK-10027'),
+  DATE '2025-09-06', TIMESTAMP '2025-09-06 05:30:00', TIMESTAMP '2025-09-06 09:30:00', 1500,'COMPLETED');
+INSERT INTO trips (route_id, vehicle_id, driver_id, trip_date, departure_time, arrival_time, fare, status) VALUES
+ ((SELECT route_id FROM routes WHERE route_name='Colombo - Kandy Express'),(SELECT vehicle_id FROM vehicles WHERE vehicle_number='SM-B-001'),(SELECT driver_id FROM drivers WHERE license_number='DL-LK-10021'),
+  DATE '2025-09-25', TIMESTAMP '2025-09-25 06:00:00', NULL, 850,'SCHEDULED');
+INSERT INTO trips (route_id, vehicle_id, driver_id, trip_date, departure_time, arrival_time, fare, status) VALUES
+ ((SELECT route_id FROM routes WHERE route_name='Negombo - Colombo Commuter'),(SELECT vehicle_id FROM vehicles WHERE vehicle_number='SM-V-002'),(SELECT driver_id FROM drivers WHERE license_number='DL-LK-10025'),
+  DATE '2025-09-26', TIMESTAMP '2025-09-26 17:00:00', NULL, 250,'SCHEDULED');
+INSERT INTO trips (route_id, vehicle_id, driver_id, trip_date, departure_time, arrival_time, fare, status) VALUES
+ ((SELECT route_id FROM routes WHERE route_name='Colombo - Galle Coastal'),(SELECT vehicle_id FROM vehicles WHERE vehicle_number='SM-B-003'),(SELECT driver_id FROM drivers WHERE license_number='DL-LK-10023'),
+  DATE '2025-08-20', TIMESTAMP '2025-08-20 07:00:00', NULL, 700,'CANCELLED');
