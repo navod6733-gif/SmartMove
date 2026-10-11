@@ -33,3 +33,13 @@ INSERT INTO route_stops (route_id, stop_name, stop_order, arrival_offset_min) VA
 INSERT INTO route_stops (route_id, stop_name, stop_order, arrival_offset_min) VALUES ((SELECT route_id FROM routes WHERE route_name='Colombo - Nuwara Eliya Hill'),'Colombo Fort',1,0);
 INSERT INTO route_stops (route_id, stop_name, stop_order, arrival_offset_min) VALUES ((SELECT route_id FROM routes WHERE route_name='Colombo - Nuwara Eliya Hill'),'Kandy',2,180);
 INSERT INTO route_stops (route_id, stop_name, stop_order, arrival_offset_min) VALUES ((SELECT route_id FROM routes WHERE route_name='Colombo - Nuwara Eliya Hill'),'Nuwara Eliya',3,240);
+
+
+INSERT INTO drivers (full_name, license_number, phone, email, hire_date, status) VALUES ('Nimal Perera','DL-LK-10021','0771234561','nimal.perera@smartmove.lk', DATE '2019-04-01','ACTIVE');
+INSERT INTO drivers (full_name, license_number, phone, email, hire_date, status) VALUES ('Kasun Silva','DL-LK-10022','0771234562','kasun.silva@smartmove.lk', DATE '2019-06-15','ACTIVE');
+INSERT INTO drivers (full_name, license_number, phone, email, hire_date, status) VALUES ('Sunil Fernando','DL-LK-10023','0771234563','sunil.fernando@smartmove.lk', DATE '2020-02-10','ACTIVE');
+INSERT INTO drivers (full_name, license_number, phone, email, hire_date, status) VALUES ('Anura Jayasuriya','DL-LK-10024','0771234564','anura.j@smartmove.lk', DATE '2020-08-20','ACTIVE');
+INSERT INTO drivers (full_name, license_number, phone, email, hire_date, status) VALUES ('Ruwan Gunawardena','DL-LK-10025','0771234565','ruwan.g@smartmove.lk', DATE '2021-01-05','ACTIVE');
+INSERT INTO drivers (full_name, license_number, phone, email, hire_date, status) VALUES ('Chamara Bandara','DL-LK-10026','0771234566','chamara.b@smartmove.lk', DATE '2021-11-12','ON_LEAVE');
+INSERT INTO drivers (full_name, license_number, phone, email, hire_date, status) VALUES ('Priyantha Kumara','DL-LK-10027','0771234567','priyantha.k@smartmove.lk', DATE '2022-03-22','ACTIVE');
+INSERT INTO drivers (full_name, license_number, phone, email, hire_date, status) VALUES ('Sampath Wickrama','DL-LK-10028','0771234568','sampath.w@smartmove.lk', DATE '2022-09-09','ACTIVE');
