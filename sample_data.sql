@@ -108,3 +108,18 @@ INSERT INTO trips (route_id, vehicle_id, driver_id, trip_date, departure_time, a
 INSERT INTO trips (route_id, vehicle_id, driver_id, trip_date, departure_time, arrival_time, fare, status) VALUES
  ((SELECT route_id FROM routes WHERE route_name='Colombo - Galle Coastal'),(SELECT vehicle_id FROM vehicles WHERE vehicle_number='SM-B-003'),(SELECT driver_id FROM drivers WHERE license_number='DL-LK-10023'),
   DATE '2025-08-20', TIMESTAMP '2025-08-20 07:00:00', NULL, 700,'CANCELLED');
+
+INSERT INTO driver_vehicle_assignments (driver_id, vehicle_id, assigned_date, status) VALUES
+  ((SELECT driver_id FROM drivers WHERE license_number='DL-LK-10021'), (SELECT vehicle_id FROM vehicles WHERE vehicle_number='SM-B-001'), DATE '2023-01-01','CURRENT');
+INSERT INTO driver_vehicle_assignments (driver_id, vehicle_id, assigned_date, status) VALUES
+  ((SELECT driver_id FROM drivers WHERE license_number='DL-LK-10022'), (SELECT vehicle_id FROM vehicles WHERE vehicle_number='SM-B-002'), DATE '2023-01-01','CURRENT');
+INSERT INTO driver_vehicle_assignments (driver_id, vehicle_id, assigned_date, status) VALUES
+  ((SELECT driver_id FROM drivers WHERE license_number='DL-LK-10023'), (SELECT vehicle_id FROM vehicles WHERE vehicle_number='SM-B-003'), DATE '2023-02-01','CURRENT');
+INSERT INTO driver_vehicle_assignments (driver_id, vehicle_id, assigned_date, status) VALUES
+  ((SELECT driver_id FROM drivers WHERE license_number='DL-LK-10024'), (SELECT vehicle_id FROM vehicles WHERE vehicle_number='SM-V-001'), DATE '2023-02-15','CURRENT');
+INSERT INTO driver_vehicle_assignments (driver_id, vehicle_id, assigned_date, status) VALUES
+  ((SELECT driver_id FROM drivers WHERE license_number='DL-LK-10025'), (SELECT vehicle_id FROM vehicles WHERE vehicle_number='SM-V-002'), DATE '2023-03-01','CURRENT');
+INSERT INTO driver_vehicle_assignments (driver_id, vehicle_id, assigned_date, status) VALUES
+  ((SELECT driver_id FROM drivers WHERE license_number='DL-LK-10027'), (SELECT vehicle_id FROM vehicles WHERE vehicle_number='SM-C-001'), DATE '2023-04-01','CURRENT');
+INSERT INTO driver_vehicle_assignments (driver_id, vehicle_id, assigned_date, status) VALUES
+  ((SELECT driver_id FROM drivers WHERE license_number='DL-LK-10028'), (SELECT vehicle_id FROM vehicles WHERE vehicle_number='SM-M-001'), DATE '2023-04-10','ENDED');
