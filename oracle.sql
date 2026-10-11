@@ -64,3 +64,17 @@ CREATE TABLE passengers (
     status             VARCHAR2(20) DEFAULT 'ACTIVE' NOT NULL
                         CHECK (status IN ('ACTIVE','INACTIVE','BANNED'))
 );
+
+CREATE TABLE trips (
+    trip_id         NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    route_id        NUMBER NOT NULL REFERENCES routes(route_id),
+    vehicle_id      NUMBER NOT NULL REFERENCES vehicles(vehicle_id),
+    driver_id       NUMBER NOT NULL REFERENCES drivers(driver_id),
+    trip_date       DATE   NOT NULL,
+    departure_time  DATE   NOT NULL,
+    arrival_time    DATE,
+    fare            NUMBER(8,2) NOT NULL CHECK (fare >= 0),
+    status          VARCHAR2(20) DEFAULT 'SCHEDULED' NOT NULL
+                     CHECK (status IN ('SCHEDULED','IN_PROGRESS','COMPLETED','CANCELLED')),
+    CONSTRAINT chk_trip_times CHECK (arrival_time IS NULL OR arrival_time >= departure_time)
+);
