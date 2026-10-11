@@ -9,3 +9,14 @@ CREATE TABLE vehicles (
                         CHECK (status IN ('ACTIVE','MAINTENANCE','RETIRED')),
     registration_date  DATE          DEFAULT SYSDATE NOT NULL
 );
+
+CREATE TABLE drivers (
+    driver_id       NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    full_name       VARCHAR2(100) NOT NULL,
+    license_number  VARCHAR2(30)  NOT NULL UNIQUE,
+    phone           VARCHAR2(20)  NOT NULL,
+    email           VARCHAR2(100) UNIQUE,
+    hire_date       DATE          DEFAULT SYSDATE NOT NULL,
+    status          VARCHAR2(20)  DEFAULT 'ACTIVE' NOT NULL
+                     CHECK (status IN ('ACTIVE','ON_LEAVE','SUSPENDED','TERMINATED'))
+);
