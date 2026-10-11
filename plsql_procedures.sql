@@ -212,3 +212,20 @@ BEGIN
     :NEW.next_due_date := :NEW.maintenance_date + 180;
 END;
 /
+
+CREATE OR REPLACE TRIGGER trg_no_booking_on_closed_trip
+BEFORE INSERT ON tickets
+FOR EACH ROW
+DECLARE
+    v_status trips.status%TYPE;
+BEGIN
+    SELECT status INTO v_status FROM trips WHERE trip_id = :NEW.trip_id;
+    IF v_status != 'SCHEDULED' THEN
+        RAISE_APPLICATION_ERROR(-20050, 'Cannot book a ticket on trip ' || :NEW.trip_id ||
+                                        ' because its status is ' || v_status || '.');
+    END IF;
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+        RAISE_APPLICATION_ERROR(-20051, 'Trip ' || :NEW.trip_id || ' does not exist.');
+END;
+/
