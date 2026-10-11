@@ -90,3 +90,14 @@ CREATE TABLE tickets (
                     CHECK (status IN ('BOOKED','CANCELLED','COMPLETED','NO_SHOW')),
     CONSTRAINT uq_trip_seat UNIQUE (trip_id, seat_number)
 );
+
+CREATE TABLE payments (
+    payment_id       NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    ticket_id        NUMBER NOT NULL UNIQUE REFERENCES tickets(ticket_id),
+    amount           NUMBER(8,2) NOT NULL CHECK (amount >= 0),
+    payment_date     DATE DEFAULT SYSDATE NOT NULL,
+    payment_method   VARCHAR2(20) NOT NULL CHECK (payment_method IN ('CARD','CASH','ONLINE_WALLET','BANK_TRANSFER')),
+    status           VARCHAR2(20) DEFAULT 'PENDING' NOT NULL
+                      CHECK (status IN ('PENDING','SUCCESS','FAILED','REFUNDED')),
+    transaction_ref  VARCHAR2(50)
+);
