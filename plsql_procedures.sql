@@ -229,3 +229,20 @@ EXCEPTION
         RAISE_APPLICATION_ERROR(-20051, 'Trip ' || :NEW.trip_id || ' does not exist.');
 END;
 /
+
+CREATE OR REPLACE TRIGGER trg_passenger_status_on_ban
+AFTER UPDATE OF status ON passengers
+FOR EACH ROW
+WHEN (NEW.status = 'BANNED')
+BEGIN
+    UPDATE tickets
+    SET status = 'CANCELLED'
+    WHERE passenger_id = :NEW.passenger_id
+      AND status = 'BOOKED';
+EXCEPTION
+    WHEN OTHERS THEN
+        RAISE_APPLICATION_ERROR(-20060, 'trg_passenger_status_on_ban failed: ' || SQLERRM);
+END;
+/
+
+COMMIT;
