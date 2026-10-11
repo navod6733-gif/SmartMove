@@ -20,3 +20,14 @@ CREATE TABLE drivers (
     status          VARCHAR2(20)  DEFAULT 'ACTIVE' NOT NULL
                      CHECK (status IN ('ACTIVE','ON_LEAVE','SUSPENDED','TERMINATED'))
 );
+
+CREATE TABLE driver_vehicle_assignments (
+    assignment_id    NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    driver_id        NUMBER NOT NULL REFERENCES drivers(driver_id),
+    vehicle_id       NUMBER NOT NULL REFERENCES vehicles(vehicle_id),
+    assigned_date    DATE   DEFAULT SYSDATE NOT NULL,
+    unassigned_date  DATE,
+    status           VARCHAR2(20) DEFAULT 'CURRENT' NOT NULL
+                      CHECK (status IN ('CURRENT','ENDED')),
+    CONSTRAINT chk_assign_dates CHECK (unassigned_date IS NULL OR unassigned_date >= assigned_date)
+);
