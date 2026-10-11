@@ -7,3 +7,8 @@ INSERT INTO vehicles (vehicle_number, vehicle_type, capacity, model, manufacture
 INSERT INTO vehicles (vehicle_number, vehicle_type, capacity, model, manufacture_year, status, registration_date) VALUES ('SM-C-001','CAR',4,'Toyota Corolla',2023,'ACTIVE', DATE '2023-01-18');
 INSERT INTO vehicles (vehicle_number, vehicle_type, capacity, model, manufacture_year, status, registration_date) VALUES ('SM-B-004','BUS',52,'Ashok Leyland Viking',2018,'RETIRED', DATE '2018-04-25');
 
+INSERT INTO routes (route_name, origin, destination, distance_km, estimated_duration_min, status) VALUES ('Colombo - Kandy Express','Colombo','Kandy',115,180,'ACTIVE');
+INSERT INTO routes (route_name, origin, destination, distance_km, estimated_duration_min, status) VALUES ('Colombo - Galle Coastal','Colombo','Galle',119,150,'ACTIVE');
+INSERT INTO routes (route_name, origin, destination, distance_km, estimated_duration_min, status) VALUES ('Negombo - Colombo Commuter','Negombo','Colombo',37,60,'ACTIVE');
+INSERT INTO routes (route_name, origin, destination, distance_km, estimated_duration_min, status) VALUES ('Colombo - Jaffna Overnight','Colombo','Jaffna',398,420,'ACTIVE');
+INSERT INTO routes (route_name, origin, destination, distance_km, estimated_duration_min, status) VALUES ('Colombo - Nuwara Eliya Hill','Colombo','Nuwara Eliya',180,240,'ACTIVE');
