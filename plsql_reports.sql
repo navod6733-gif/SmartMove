@@ -89,3 +89,30 @@ BEGIN
         ORDER BY t.trip_date DESC, t.departure_time DESC;
 END rpt_passenger_travel_history;
 /
+
+CREATE OR REPLACE PROCEDURE rpt_vehicles_due_maintenance (
+    p_days_ahead IN  NUMBER DEFAULT 30,
+    p_cursor     OUT SYS_REFCURSOR
+)
+IS
+BEGIN
+    OPEN p_cursor FOR
+        SELECT v.vehicle_id,
+               v.vehicle_number,
+               v.vehicle_type,
+               v.status                       AS vehicle_status,
+               m.maintenance_id,
+               m.next_due_date,
+               TRUNC(m.next_due_date) - TRUNC(SYSDATE)  AS days_until_due,
+               CASE WHEN m.next_due_date < TRUNC(SYSDATE) THEN 'OVERDUE' ELSE 'UPCOMING' END AS urgency
+        FROM vehicles v
+        JOIN maintenance m ON m.vehicle_id = v.vehicle_id
+        WHERE m.next_due_date IS NOT NULL
+          AND m.next_due_date <= TRUNC(SYSDATE) + p_days_ahead
+          AND m.maintenance_id = (
+                
+                SELECT MAX(m2.maintenance_id) FROM maintenance m2 WHERE m2.vehicle_id = v.vehicle_id
+              )
+        ORDER BY m.next_due_date;
+END rpt_vehicles_due_maintenance;
+/
