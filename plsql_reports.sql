@@ -137,3 +137,25 @@ BEGIN
         ORDER BY avg_rating DESC, reviews_count DESC;
 END rpt_top_rated_drivers;
 /
+
+CREATE OR REPLACE PROCEDURE rpt_top_rated_vehicles (
+    p_cursor OUT SYS_REFCURSOR
+)
+IS
+BEGIN
+    OPEN p_cursor FOR
+        SELECT v.vehicle_id,
+               v.vehicle_number,
+               v.vehicle_type,
+               COUNT(f.feedback_id)     AS reviews_count,
+               ROUND(AVG(f.rating), 2)  AS avg_rating
+        FROM vehicles v
+        JOIN trips t     ON t.vehicle_id = v.vehicle_id
+        LEFT JOIN feedback f ON f.trip_id = t.trip_id
+        GROUP BY v.vehicle_id, v.vehicle_number, v.vehicle_type
+        HAVING COUNT(f.feedback_id) > 0
+        ORDER BY avg_rating DESC, reviews_count DESC;
+END rpt_top_rated_vehicles;
+/
+
+COMMIT;
