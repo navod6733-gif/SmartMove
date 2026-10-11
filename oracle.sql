@@ -122,3 +122,13 @@ CREATE TABLE feedback (
     created_date   DATE DEFAULT SYSDATE NOT NULL
 );
 
+CREATE INDEX idx_trips_route      ON trips(route_id);
+CREATE INDEX idx_trips_date       ON trips(trip_date);
+CREATE INDEX idx_tickets_trip     ON tickets(trip_id);
+CREATE INDEX idx_tickets_passenger ON tickets(passenger_id);
+CREATE INDEX idx_payments_date    ON payments(payment_date);
+CREATE INDEX idx_maintenance_veh  ON maintenance(vehicle_id);
+CREATE INDEX idx_maintenance_due  ON maintenance(next_due_date);
+CREATE INDEX idx_feedback_trip    ON feedback(trip_id);
+
+COMMIT;
