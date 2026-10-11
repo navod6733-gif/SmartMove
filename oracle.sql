@@ -31,3 +31,25 @@ CREATE TABLE driver_vehicle_assignments (
                       CHECK (status IN ('CURRENT','ENDED')),
     CONSTRAINT chk_assign_dates CHECK (unassigned_date IS NULL OR unassigned_date >= assigned_date)
 );
+
+
+CREATE TABLE routes (
+    route_id               NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    route_name             VARCHAR2(100) NOT NULL,
+    origin                 VARCHAR2(100) NOT NULL,
+    destination            VARCHAR2(100) NOT NULL,
+    distance_km            NUMBER(6,2)   CHECK (distance_km > 0),
+    estimated_duration_min NUMBER(5)     CHECK (estimated_duration_min > 0),
+    status                 VARCHAR2(20)  DEFAULT 'ACTIVE' NOT NULL
+                            CHECK (status IN ('ACTIVE','SUSPENDED'))
+);
+
+
+CREATE TABLE route_stops (
+    stop_id             NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    route_id            NUMBER NOT NULL REFERENCES routes(route_id) ON DELETE CASCADE,
+    stop_name           VARCHAR2(100) NOT NULL,
+    stop_order          NUMBER(3) NOT NULL,
+    arrival_offset_min  NUMBER(5) DEFAULT 0 NOT NULL,
+    CONSTRAINT uq_route_stop_order UNIQUE (route_id, stop_order)
+);
