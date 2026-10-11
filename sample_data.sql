@@ -12,3 +12,24 @@ INSERT INTO routes (route_name, origin, destination, distance_km, estimated_dura
 INSERT INTO routes (route_name, origin, destination, distance_km, estimated_duration_min, status) VALUES ('Negombo - Colombo Commuter','Negombo','Colombo',37,60,'ACTIVE');
 INSERT INTO routes (route_name, origin, destination, distance_km, estimated_duration_min, status) VALUES ('Colombo - Jaffna Overnight','Colombo','Jaffna',398,420,'ACTIVE');
 INSERT INTO routes (route_name, origin, destination, distance_km, estimated_duration_min, status) VALUES ('Colombo - Nuwara Eliya Hill','Colombo','Nuwara Eliya',180,240,'ACTIVE');
+
+INSERT INTO route_stops (route_id, stop_name, stop_order, arrival_offset_min) VALUES ((SELECT route_id FROM routes WHERE route_name='Colombo - Kandy Express'),'Colombo Fort',1,0);
+INSERT INTO route_stops (route_id, stop_name, stop_order, arrival_offset_min) VALUES ((SELECT route_id FROM routes WHERE route_name='Colombo - Kandy Express'),'Kadawatha',2,30);
+INSERT INTO route_stops (route_id, stop_name, stop_order, arrival_offset_min) VALUES ((SELECT route_id FROM routes WHERE route_name='Colombo - Kandy Express'),'Kegalle',3,100);
+INSERT INTO route_stops (route_id, stop_name, stop_order, arrival_offset_min) VALUES ((SELECT route_id FROM routes WHERE route_name='Colombo - Kandy Express'),'Kandy',4,180);
+
+INSERT INTO route_stops (route_id, stop_name, stop_order, arrival_offset_min) VALUES ((SELECT route_id FROM routes WHERE route_name='Colombo - Galle Coastal'),'Colombo Fort',1,0);
+INSERT INTO route_stops (route_id, stop_name, stop_order, arrival_offset_min) VALUES ((SELECT route_id FROM routes WHERE route_name='Colombo - Galle Coastal'),'Kalutara',2,45);
+INSERT INTO route_stops (route_id, stop_name, stop_order, arrival_offset_min) VALUES ((SELECT route_id FROM routes WHERE route_name='Colombo - Galle Coastal'),'Galle',3,150);
+
+INSERT INTO route_stops (route_id, stop_name, stop_order, arrival_offset_min) VALUES ((SELECT route_id FROM routes WHERE route_name='Negombo - Colombo Commuter'),'Negombo',1,0);
+INSERT INTO route_stops (route_id, stop_name, stop_order, arrival_offset_min) VALUES ((SELECT route_id FROM routes WHERE route_name='Negombo - Colombo Commuter'),'Ja-Ela',2,20);
+INSERT INTO route_stops (route_id, stop_name, stop_order, arrival_offset_min) VALUES ((SELECT route_id FROM routes WHERE route_name='Negombo - Colombo Commuter'),'Colombo Fort',3,60);
+
+INSERT INTO route_stops (route_id, stop_name, stop_order, arrival_offset_min) VALUES ((SELECT route_id FROM routes WHERE route_name='Colombo - Jaffna Overnight'),'Colombo Fort',1,0);
+INSERT INTO route_stops (route_id, stop_name, stop_order, arrival_offset_min) VALUES ((SELECT route_id FROM routes WHERE route_name='Colombo - Jaffna Overnight'),'Vavuniya',2,300);
+INSERT INTO route_stops (route_id, stop_name, stop_order, arrival_offset_min) VALUES ((SELECT route_id FROM routes WHERE route_name='Colombo - Jaffna Overnight'),'Jaffna',3,420);
+
+INSERT INTO route_stops (route_id, stop_name, stop_order, arrival_offset_min) VALUES ((SELECT route_id FROM routes WHERE route_name='Colombo - Nuwara Eliya Hill'),'Colombo Fort',1,0);
+INSERT INTO route_stops (route_id, stop_name, stop_order, arrival_offset_min) VALUES ((SELECT route_id FROM routes WHERE route_name='Colombo - Nuwara Eliya Hill'),'Kandy',2,180);
+INSERT INTO route_stops (route_id, stop_name, stop_order, arrival_offset_min) VALUES ((SELECT route_id FROM routes WHERE route_name='Colombo - Nuwara Eliya Hill'),'Nuwara Eliya',3,240);
