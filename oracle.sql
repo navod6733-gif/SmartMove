@@ -102,6 +102,17 @@ CREATE TABLE payments (
     transaction_ref  VARCHAR2(50)
 );
 
+CREATE TABLE maintenance (
+    maintenance_id    NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    vehicle_id        NUMBER NOT NULL REFERENCES vehicles(vehicle_id),
+    maintenance_date  DATE NOT NULL,
+    description        VARCHAR2(500),
+    cost               NUMBER(8,2) CHECK (cost >= 0),
+    next_due_date      DATE,
+    status             VARCHAR2(20) DEFAULT 'COMPLETED' NOT NULL
+                        CHECK (status IN ('SCHEDULED','IN_PROGRESS','COMPLETED'))
+);
+
 
 
 CREATE INDEX idx_trips_route      ON trips(route_id);

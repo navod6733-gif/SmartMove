@@ -236,7 +236,7 @@ FOR EACH ROW
 WHEN (NEW.status = 'BANNED')
 BEGIN
     UPDATE tickets
-    SET status = 'CANCELLED'
+    SET status = 'CANCELLED'S
     WHERE passenger_id = :NEW.passenger_id
       AND status = 'BOOKED';
 EXCEPTION
