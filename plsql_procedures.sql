@@ -97,3 +97,33 @@ EXCEPTION
         RAISE_APPLICATION_ERROR(-20099, 'Unexpected error while booking ticket: ' || SQLERRM);
 END sp_book_ticket;
 /
+
+
+CREATE OR REPLACE PROCEDURE sp_cancel_ticket (
+    p_ticket_id IN NUMBER
+)
+IS
+    v_status tickets.status%TYPE;
+    e_already_cancelled EXCEPTION;
+BEGIN
+    SELECT status INTO v_status FROM tickets WHERE ticket_id = p_ticket_id FOR UPDATE;
+
+    IF v_status = 'CANCELLED' THEN
+        RAISE e_already_cancelled;
+    END IF;
+
+    UPDATE tickets SET status = 'CANCELLED' WHERE ticket_id = p_ticket_id;
+    UPDATE payments SET status = 'REFUNDED' WHERE ticket_id = p_ticket_id AND status = 'SUCCESS';
+
+    COMMIT;
+EXCEPTION
+    WHEN e_already_cancelled THEN
+        RAISE_APPLICATION_ERROR(-20020, 'Ticket ' || p_ticket_id || ' is already cancelled.');
+    WHEN NO_DATA_FOUND THEN
+        ROLLBACK;
+        RAISE_APPLICATION_ERROR(-20021, 'Ticket ' || p_ticket_id || ' does not exist.');
+    WHEN OTHERS THEN
+        ROLLBACK;
+        RAISE_APPLICATION_ERROR(-20098, 'Unexpected error while cancelling ticket: ' || SQLERRM);
+END sp_cancel_ticket;
+/
