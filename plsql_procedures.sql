@@ -187,4 +187,19 @@ EXCEPTION
 END sp_assign_driver_to_vehicle;
 /
 
-
+CREATE OR REPLACE TRIGGER trg_maintenance_vehicle_status
+AFTER INSERT OR UPDATE OF status ON maintenance
+FOR EACH ROW
+BEGIN
+    IF :NEW.status = 'IN_PROGRESS' THEN
+        UPDATE vehicles SET status = 'MAINTENANCE'
+        WHERE vehicle_id = :NEW.vehicle_id AND status != 'RETIRED';
+    ELSIF :NEW.status = 'COMPLETED' THEN
+        UPDATE vehicles SET status = 'ACTIVE'
+        WHERE vehicle_id = :NEW.vehicle_id AND status = 'MAINTENANCE';
+    END IF;
+EXCEPTION
+    WHEN OTHERS THEN
+        RAISE_APPLICATION_ERROR(-20040, 'trg_maintenance_vehicle_status failed: ' || SQLERRM);
+END;
+/
