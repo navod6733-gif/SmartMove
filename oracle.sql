@@ -78,3 +78,15 @@ CREATE TABLE trips (
                      CHECK (status IN ('SCHEDULED','IN_PROGRESS','COMPLETED','CANCELLED')),
     CONSTRAINT chk_trip_times CHECK (arrival_time IS NULL OR arrival_time >= departure_time)
 );
+
+CREATE TABLE tickets (
+    ticket_id      NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    trip_id        NUMBER NOT NULL REFERENCES trips(trip_id),
+    passenger_id   NUMBER NOT NULL REFERENCES passengers(passenger_id),
+    seat_number    VARCHAR2(10) NOT NULL,
+    booking_date   DATE DEFAULT SYSDATE NOT NULL,
+    price          NUMBER(8,2) NOT NULL CHECK (price >= 0),
+    status         VARCHAR2(20) DEFAULT 'BOOKED' NOT NULL
+                    CHECK (status IN ('BOOKED','CANCELLED','COMPLETED','NO_SHOW')),
+    CONSTRAINT uq_trip_seat UNIQUE (trip_id, seat_number)
+);
