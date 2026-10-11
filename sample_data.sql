@@ -184,3 +184,8 @@ INSERT INTO tickets (trip_id, passenger_id, seat_number, booking_date, price, st
 INSERT INTO tickets (trip_id, passenger_id, seat_number, booking_date, price, status) VALUES
  ((SELECT trip_id FROM trips WHERE trip_date=DATE '2025-09-26' AND route_id=(SELECT route_id FROM routes WHERE route_name='Negombo - Colombo Commuter')),
   (SELECT passenger_id FROM passengers WHERE email='sachini.w@example.com'),'C1',DATE '2025-09-24',250,'BOOKED');
+
+INSERT INTO payments (ticket_id, amount, payment_date, payment_method, status, transaction_ref)
+  SELECT ticket_id, price, booking_date, CASE MOD(ticket_id,3) WHEN 0 THEN 'CARD' WHEN 1 THEN 'ONLINE_WALLET' ELSE 'CASH' END,
+         'SUCCESS', 'TXN'||LPAD(ticket_id,8,'0')
+  FROM tickets WHERE status IN ('COMPLETED','BOOKED');
