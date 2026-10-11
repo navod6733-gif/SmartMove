@@ -61,3 +61,31 @@ BEGIN
     RETURN v_total;
 END fn_total_revenue_in_period;
 /
+
+CREATE OR REPLACE PROCEDURE rpt_passenger_travel_history (
+    p_passenger_id IN  NUMBER,
+    p_cursor       OUT SYS_REFCURSOR
+)
+IS
+BEGIN
+    OPEN p_cursor FOR
+        SELECT tk.ticket_id,
+               t.trip_id,
+               r.route_name,
+               r.origin,
+               r.destination,
+               t.trip_date,
+               t.departure_time,
+               tk.seat_number,
+               tk.price,
+               tk.status                     AS ticket_status,
+               p.status                      AS payment_status,
+               p.payment_method
+        FROM tickets tk
+        JOIN trips t    ON t.trip_id = tk.trip_id
+        JOIN routes r   ON r.route_id = t.route_id
+        LEFT JOIN payments p ON p.ticket_id = tk.ticket_id
+        WHERE tk.passenger_id = p_passenger_id
+        ORDER BY t.trip_date DESC, t.departure_time DESC;
+END rpt_passenger_travel_history;
+/
