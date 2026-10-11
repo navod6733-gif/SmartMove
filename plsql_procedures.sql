@@ -203,3 +203,12 @@ EXCEPTION
         RAISE_APPLICATION_ERROR(-20040, 'trg_maintenance_vehicle_status failed: ' || SQLERRM);
 END;
 /
+
+CREATE OR REPLACE TRIGGER trg_maintenance_default_due_date
+BEFORE INSERT ON maintenance
+FOR EACH ROW
+WHEN (NEW.next_due_date IS NULL)
+BEGIN
+    :NEW.next_due_date := :NEW.maintenance_date + 180;
+END;
+/

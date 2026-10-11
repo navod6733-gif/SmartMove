@@ -119,7 +119,7 @@ CREATE TABLE feedback (
     passenger_id   NUMBER NOT NULL REFERENCES passengers(passenger_id),
     trip_id        NUMBER NOT NULL REFERENCES trips(trip_id),
     rating         NUMBER(1) NOT NULL CHECK (rating BETWEEN 1 AND 5),
-    mongo_ref_id   VARCHAR2(50),  -- ObjectId string of the matching MongoDB review document
+    mongo_ref_id   VARCHAR2(50), 
     created_date   DATE DEFAULT SYSDATE NOT NULL
 );
 
