@@ -123,3 +123,64 @@ INSERT INTO driver_vehicle_assignments (driver_id, vehicle_id, assigned_date, st
   ((SELECT driver_id FROM drivers WHERE license_number='DL-LK-10027'), (SELECT vehicle_id FROM vehicles WHERE vehicle_number='SM-C-001'), DATE '2023-04-01','CURRENT');
 INSERT INTO driver_vehicle_assignments (driver_id, vehicle_id, assigned_date, status) VALUES
   ((SELECT driver_id FROM drivers WHERE license_number='DL-LK-10028'), (SELECT vehicle_id FROM vehicles WHERE vehicle_number='SM-M-001'), DATE '2023-04-10','ENDED');
+
+INSERT INTO tickets (trip_id, passenger_id, seat_number, booking_date, price, status) VALUES
+ ((SELECT trip_id FROM trips WHERE trip_date=DATE '2025-09-01' AND route_id=(SELECT route_id FROM routes WHERE route_name='Colombo - Kandy Express')),
+  (SELECT passenger_id FROM passengers WHERE email='dilani.r@example.com'),'A1',DATE '2025-08-28',850,'COMPLETED');
+INSERT INTO tickets (trip_id, passenger_id, seat_number, booking_date, price, status) VALUES
+ ((SELECT trip_id FROM trips WHERE trip_date=DATE '2025-09-01' AND route_id=(SELECT route_id FROM routes WHERE route_name='Colombo - Kandy Express')),
+  (SELECT passenger_id FROM passengers WHERE email='ashan.peris@example.com'),'A2',DATE '2025-08-28',850,'COMPLETED');
+INSERT INTO tickets (trip_id, passenger_id, seat_number, booking_date, price, status) VALUES
+ ((SELECT trip_id FROM trips WHERE trip_date=DATE '2025-09-08' AND route_id=(SELECT route_id FROM routes WHERE route_name='Colombo - Kandy Express')),
+  (SELECT passenger_id FROM passengers WHERE email='nadeesha.k@example.com'),'A1',DATE '2025-09-05',850,'COMPLETED');
+INSERT INTO tickets (trip_id, passenger_id, seat_number, booking_date, price, status) VALUES
+ ((SELECT trip_id FROM trips WHERE trip_date=DATE '2025-09-15' AND route_id=(SELECT route_id FROM routes WHERE route_name='Colombo - Kandy Express')),
+  (SELECT passenger_id FROM passengers WHERE email='chathura.w@example.com'),'B1',DATE '2025-09-12',850,'COMPLETED');
+INSERT INTO tickets (trip_id, passenger_id, seat_number, booking_date, price, status) VALUES
+ ((SELECT trip_id FROM trips WHERE trip_date=DATE '2025-09-15' AND route_id=(SELECT route_id FROM routes WHERE route_name='Colombo - Kandy Express')),
+  (SELECT passenger_id FROM passengers WHERE email='ishara.m@example.com'),'B2',DATE '2025-09-12',850,'COMPLETED');
+INSERT INTO tickets (trip_id, passenger_id, seat_number, booking_date, price, status) VALUES
+ ((SELECT trip_id FROM trips WHERE trip_date=DATE '2025-09-02' AND route_id=(SELECT route_id FROM routes WHERE route_name='Colombo - Galle Coastal')),
+  (SELECT passenger_id FROM passengers WHERE email='lahiru.c@example.com'),'A1',DATE '2025-08-30',700,'COMPLETED');
+INSERT INTO tickets (trip_id, passenger_id, seat_number, booking_date, price, status) VALUES
+ ((SELECT trip_id FROM trips WHERE trip_date=DATE '2025-09-02' AND route_id=(SELECT route_id FROM routes WHERE route_name='Colombo - Galle Coastal')),
+  (SELECT passenger_id FROM passengers WHERE email='harshani.d@example.com'),'A2',DATE '2025-08-30',700,'COMPLETED');
+INSERT INTO tickets (trip_id, passenger_id, seat_number, booking_date, price, status) VALUES
+ ((SELECT trip_id FROM trips WHERE trip_date=DATE '2025-09-09' AND route_id=(SELECT route_id FROM routes WHERE route_name='Colombo - Galle Coastal')),
+  (SELECT passenger_id FROM passengers WHERE email='tharindu.a@example.com'),'A1',DATE '2025-09-06',700,'COMPLETED');
+INSERT INTO tickets (trip_id, passenger_id, seat_number, booking_date, price, status) VALUES
+ ((SELECT trip_id FROM trips WHERE trip_date=DATE '2025-09-16' AND route_id=(SELECT route_id FROM routes WHERE route_name='Colombo - Galle Coastal')),
+  (SELECT passenger_id FROM passengers WHERE email='sachini.w@example.com'),'A1',DATE '2025-09-13',700,'COMPLETED');
+INSERT INTO tickets (trip_id, passenger_id, seat_number, booking_date, price, status) VALUES
+ ((SELECT trip_id FROM trips WHERE trip_date=DATE '2025-09-16' AND route_id=(SELECT route_id FROM routes WHERE route_name='Colombo - Galle Coastal')),
+  (SELECT passenger_id FROM passengers WHERE email='dinesh.k@example.com'),'A2',DATE '2025-09-13',700,'COMPLETED');
+INSERT INTO tickets (trip_id, passenger_id, seat_number, booking_date, price, status) VALUES
+ ((SELECT trip_id FROM trips WHERE trip_date=DATE '2025-09-01' AND route_id=(SELECT route_id FROM routes WHERE route_name='Negombo - Colombo Commuter')),
+  (SELECT passenger_id FROM passengers WHERE email='piumi.h@example.com'),'C1',DATE '2025-08-31',250,'COMPLETED');
+INSERT INTO tickets (trip_id, passenger_id, seat_number, booking_date, price, status) VALUES
+ ((SELECT trip_id FROM trips WHERE trip_date=DATE '2025-09-03' AND route_id=(SELECT route_id FROM routes WHERE route_name='Negombo - Colombo Commuter')),
+  (SELECT passenger_id FROM passengers WHERE email='dilani.r@example.com'),'C1',DATE '2025-09-02',250,'COMPLETED');
+INSERT INTO tickets (trip_id, passenger_id, seat_number, booking_date, price, status) VALUES
+ ((SELECT trip_id FROM trips WHERE trip_date=DATE '2025-09-05' AND route_id=(SELECT route_id FROM routes WHERE route_name='Negombo - Colombo Commuter')),
+  (SELECT passenger_id FROM passengers WHERE email='ashan.peris@example.com'),'C1',DATE '2025-09-04',250,'COMPLETED');
+INSERT INTO tickets (trip_id, passenger_id, seat_number, booking_date, price, status) VALUES
+ ((SELECT trip_id FROM trips WHERE trip_date=DATE '2025-09-08' AND route_id=(SELECT route_id FROM routes WHERE route_name='Negombo - Colombo Commuter')),
+  (SELECT passenger_id FROM passengers WHERE email='nadeesha.k@example.com'),'C1',DATE '2025-09-07',250,'COMPLETED');
+INSERT INTO tickets (trip_id, passenger_id, seat_number, booking_date, price, status) VALUES
+ ((SELECT trip_id FROM trips WHERE trip_date=DATE '2025-09-10' AND route_id=(SELECT route_id FROM routes WHERE route_name='Negombo - Colombo Commuter')),
+  (SELECT passenger_id FROM passengers WHERE email='chathura.w@example.com'),'C1',DATE '2025-09-09',250,'COMPLETED');
+INSERT INTO tickets (trip_id, passenger_id, seat_number, booking_date, price, status) VALUES
+ ((SELECT trip_id FROM trips WHERE trip_date=DATE '2025-09-04' AND route_id=(SELECT route_id FROM routes WHERE route_name='Colombo - Jaffna Overnight')),
+  (SELECT passenger_id FROM passengers WHERE email='ishara.m@example.com'),'A1',DATE '2025-08-29',2200,'COMPLETED');
+INSERT INTO tickets (trip_id, passenger_id, seat_number, booking_date, price, status) VALUES
+ ((SELECT trip_id FROM trips WHERE trip_date=DATE '2025-09-18' AND route_id=(SELECT route_id FROM routes WHERE route_name='Colombo - Jaffna Overnight')),
+  (SELECT passenger_id FROM passengers WHERE email='lahiru.c@example.com'),'A1',DATE '2025-09-14',2200,'COMPLETED');
+INSERT INTO tickets (trip_id, passenger_id, seat_number, booking_date, price, status) VALUES
+ ((SELECT trip_id FROM trips WHERE trip_date=DATE '2025-09-06' AND route_id=(SELECT route_id FROM routes WHERE route_name='Colombo - Nuwara Eliya Hill')),
+  (SELECT passenger_id FROM passengers WHERE email='harshani.d@example.com'),'A1',DATE '2025-09-01',1500,'COMPLETED');
+INSERT INTO tickets (trip_id, passenger_id, seat_number, booking_date, price, status) VALUES
+ ((SELECT trip_id FROM trips WHERE trip_date=DATE '2025-09-25' AND route_id=(SELECT route_id FROM routes WHERE route_name='Colombo - Kandy Express')),
+  (SELECT passenger_id FROM passengers WHERE email='tharindu.a@example.com'),'A1',DATE '2025-09-20',850,'BOOKED');
+INSERT INTO tickets (trip_id, passenger_id, seat_number, booking_date, price, status) VALUES
+ ((SELECT trip_id FROM trips WHERE trip_date=DATE '2025-09-26' AND route_id=(SELECT route_id FROM routes WHERE route_name='Negombo - Colombo Commuter')),
+  (SELECT passenger_id FROM passengers WHERE email='sachini.w@example.com'),'C1',DATE '2025-09-24',250,'BOOKED');
