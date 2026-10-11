@@ -116,3 +116,24 @@ BEGIN
         ORDER BY m.next_due_date;
 END rpt_vehicles_due_maintenance;
 /
+
+CREATE OR REPLACE PROCEDURE rpt_top_rated_drivers (
+    p_cursor OUT SYS_REFCURSOR
+)
+IS
+BEGIN
+    OPEN p_cursor FOR
+        SELECT d.driver_id,
+               d.full_name,
+               d.status,
+               COUNT(f.feedback_id)               AS reviews_count,
+               ROUND(AVG(f.rating), 2)             AS avg_rating,
+               COUNT(DISTINCT t.trip_id)           AS trips_driven
+        FROM drivers d
+        JOIN trips t     ON t.driver_id = d.driver_id
+        LEFT JOIN feedback f ON f.trip_id = t.trip_id
+        GROUP BY d.driver_id, d.full_name, d.status
+        HAVING COUNT(f.feedback_id) > 0
+        ORDER BY avg_rating DESC, reviews_count DESC;
+END rpt_top_rated_drivers;
+/
