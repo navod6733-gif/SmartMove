@@ -158,3 +158,33 @@ EXCEPTION
         RAISE_APPLICATION_ERROR(-20097, 'Unexpected error while registering passenger: ' || SQLERRM);
 END sp_register_passenger;
 /
+
+CREATE OR REPLACE PROCEDURE sp_assign_driver_to_vehicle (
+    p_driver_id   IN NUMBER,
+    p_vehicle_id  IN NUMBER
+)
+IS
+    CURSOR c_current_assignments IS
+        SELECT assignment_id
+        FROM driver_vehicle_assignments
+        WHERE vehicle_id = p_vehicle_id AND status = 'CURRENT'
+        FOR UPDATE;
+BEGIN
+    FOR rec IN c_current_assignments LOOP
+        UPDATE driver_vehicle_assignments
+        SET status = 'ENDED', unassigned_date = SYSDATE
+        WHERE CURRENT OF c_current_assignments;
+    END LOOP;
+
+    INSERT INTO driver_vehicle_assignments (driver_id, vehicle_id, assigned_date, status)
+    VALUES (p_driver_id, p_vehicle_id, SYSDATE, 'CURRENT');
+
+    COMMIT;
+EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+        RAISE_APPLICATION_ERROR(-20096, 'Unexpected error while assigning driver to vehicle: ' || SQLERRM);
+END sp_assign_driver_to_vehicle;
+/
+
+
