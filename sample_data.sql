@@ -206,3 +206,34 @@ INSERT INTO maintenance (vehicle_id, maintenance_date, description, cost, next_d
  ((SELECT vehicle_id FROM vehicles WHERE vehicle_number='SM-V-002'), DATE '2025-03-15','Brake pad replacement',12000, DATE '2025-09-15','COMPLETED');
 INSERT INTO maintenance (vehicle_id, maintenance_date, description, cost, next_due_date, status) VALUES
  ((SELECT vehicle_id FROM vehicles WHERE vehicle_number='SM-B-001'), DATE '2025-01-05','Battery replacement',18000, DATE '2025-09-30','COMPLETED');
+
+INSERT INTO feedback (passenger_id, trip_id, rating, created_date) VALUES
+ ((SELECT passenger_id FROM passengers WHERE email='dilani.r@example.com'),
+  (SELECT trip_id FROM trips WHERE trip_date=DATE '2025-09-01' AND route_id=(SELECT route_id FROM routes WHERE route_name='Colombo - Kandy Express')),
+  5, DATE '2025-09-01');
+INSERT INTO feedback (passenger_id, trip_id, rating, created_date) VALUES
+ ((SELECT passenger_id FROM passengers WHERE email='ashan.peris@example.com'),
+  (SELECT trip_id FROM trips WHERE trip_date=DATE '2025-09-01' AND route_id=(SELECT route_id FROM routes WHERE route_name='Colombo - Kandy Express')),
+  4, DATE '2025-09-01');
+INSERT INTO feedback (passenger_id, trip_id, rating, created_date) VALUES
+ ((SELECT passenger_id FROM passengers WHERE email='lahiru.c@example.com'),
+  (SELECT trip_id FROM trips WHERE trip_date=DATE '2025-09-02' AND route_id=(SELECT route_id FROM routes WHERE route_name='Colombo - Galle Coastal')),
+  5, DATE '2025-09-02');
+INSERT INTO feedback (passenger_id, trip_id, rating, created_date) VALUES
+ ((SELECT passenger_id FROM passengers WHERE email='harshani.d@example.com'),
+  (SELECT trip_id FROM trips WHERE trip_date=DATE '2025-09-02' AND route_id=(SELECT route_id FROM routes WHERE route_name='Colombo - Galle Coastal')),
+  2, DATE '2025-09-02');
+INSERT INTO feedback (passenger_id, trip_id, rating, created_date) VALUES
+ ((SELECT passenger_id FROM passengers WHERE email='piumi.h@example.com'),
+  (SELECT trip_id FROM trips WHERE trip_date=DATE '2025-09-01' AND route_id=(SELECT route_id FROM routes WHERE route_name='Negombo - Colombo Commuter')),
+  4, DATE '2025-09-01');
+INSERT INTO feedback (passenger_id, trip_id, rating, created_date) VALUES
+ ((SELECT passenger_id FROM passengers WHERE email='ishara.m@example.com'),
+  (SELECT trip_id FROM trips WHERE trip_date=DATE '2025-09-04' AND route_id=(SELECT route_id FROM routes WHERE route_name='Colombo - Jaffna Overnight')),
+  3, DATE '2025-09-05');
+INSERT INTO feedback (passenger_id, trip_id, rating, created_date) VALUES
+ ((SELECT passenger_id FROM passengers WHERE email='harshani.d@example.com'),
+  (SELECT trip_id FROM trips WHERE trip_date=DATE '2025-09-06' AND route_id=(SELECT route_id FROM routes WHERE route_name='Colombo - Nuwara Eliya Hill')),
+  5, DATE '2025-09-06');
+
+COMMIT;
