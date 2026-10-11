@@ -53,3 +53,14 @@ CREATE TABLE route_stops (
     arrival_offset_min  NUMBER(5) DEFAULT 0 NOT NULL,
     CONSTRAINT uq_route_stop_order UNIQUE (route_id, stop_order)
 );
+
+CREATE TABLE passengers (
+    passenger_id       NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    full_name          VARCHAR2(100) NOT NULL,
+    email              VARCHAR2(100) NOT NULL UNIQUE,
+    phone              VARCHAR2(20)  NOT NULL,
+    password_hash      VARCHAR2(255) NOT NULL,
+    registration_date  DATE DEFAULT SYSDATE NOT NULL,
+    status             VARCHAR2(20) DEFAULT 'ACTIVE' NOT NULL
+                        CHECK (status IN ('ACTIVE','INACTIVE','BANNED'))
+);
