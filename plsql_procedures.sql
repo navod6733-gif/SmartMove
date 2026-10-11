@@ -127,3 +127,34 @@ EXCEPTION
         RAISE_APPLICATION_ERROR(-20098, 'Unexpected error while cancelling ticket: ' || SQLERRM);
 END sp_cancel_ticket;
 /
+
+CREATE OR REPLACE PROCEDURE sp_register_passenger (
+    p_full_name      IN  VARCHAR2,
+    p_email          IN  VARCHAR2,
+    p_phone          IN  VARCHAR2,
+    p_password_hash  IN  VARCHAR2,
+    p_passenger_id   OUT NUMBER
+)
+IS
+    e_invalid_email EXCEPTION;
+BEGIN
+    IF NOT REGEXP_LIKE(p_email, '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$') THEN
+        RAISE e_invalid_email;
+    END IF;
+
+    INSERT INTO passengers (full_name, email, phone, password_hash)
+    VALUES (p_full_name, p_email, p_phone, p_password_hash)
+    RETURNING passenger_id INTO p_passenger_id;
+
+    COMMIT;
+EXCEPTION
+    WHEN e_invalid_email THEN
+        RAISE_APPLICATION_ERROR(-20030, 'Email "' || p_email || '" is not a valid email address.');
+    WHEN DUP_VAL_ON_INDEX THEN
+        ROLLBACK;
+        RAISE_APPLICATION_ERROR(-20031, 'A passenger with email "' || p_email || '" is already registered.');
+    WHEN OTHERS THEN
+        ROLLBACK;
+        RAISE_APPLICATION_ERROR(-20097, 'Unexpected error while registering passenger: ' || SQLERRM);
+END sp_register_passenger;
+/
