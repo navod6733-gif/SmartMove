@@ -122,4 +122,3 @@ CREATE TABLE feedback (
     created_date   DATE DEFAULT SYSDATE NOT NULL
 );
 
-//test
