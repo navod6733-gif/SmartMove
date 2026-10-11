@@ -112,3 +112,12 @@ CREATE TABLE maintenance (
     status             VARCHAR2(20) DEFAULT 'COMPLETED' NOT NULL
                         CHECK (status IN ('SCHEDULED','IN_PROGRESS','COMPLETED'))
 );
+
+CREATE TABLE feedback (
+    feedback_id    NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    passenger_id   NUMBER NOT NULL REFERENCES passengers(passenger_id),
+    trip_id        NUMBER NOT NULL REFERENCES trips(trip_id),
+    rating         NUMBER(1) NOT NULL CHECK (rating BETWEEN 1 AND 5),
+    mongo_ref_id   VARCHAR2(50),  -- ObjectId string of the matching MongoDB review document
+    created_date   DATE DEFAULT SYSDATE NOT NULL
+);
