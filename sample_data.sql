@@ -189,3 +189,20 @@ INSERT INTO payments (ticket_id, amount, payment_date, payment_method, status, t
   SELECT ticket_id, price, booking_date, CASE MOD(ticket_id,3) WHEN 0 THEN 'CARD' WHEN 1 THEN 'ONLINE_WALLET' ELSE 'CASH' END,
          'SUCCESS', 'TXN'||LPAD(ticket_id,8,'0')
   FROM tickets WHERE status IN ('COMPLETED','BOOKED');
+
+  INSERT INTO maintenance (vehicle_id, maintenance_date, description, cost, next_due_date, status) VALUES
+ ((SELECT vehicle_id FROM vehicles WHERE vehicle_number='SM-B-001'), DATE '2025-06-01','Routine service - oil change, brake check',15000, DATE '2025-12-01','COMPLETED');
+INSERT INTO maintenance (vehicle_id, maintenance_date, description, cost, next_due_date, status) VALUES
+ ((SELECT vehicle_id FROM vehicles WHERE vehicle_number='SM-B-002'), DATE '2025-05-15','Tyre replacement',40000, DATE '2025-11-15','COMPLETED');
+INSERT INTO maintenance (vehicle_id, maintenance_date, description, cost, next_due_date, status) VALUES
+ ((SELECT vehicle_id FROM vehicles WHERE vehicle_number='SM-B-003'), DATE '2025-07-10','Engine tuning',22000, DATE '2026-01-10','COMPLETED');
+INSERT INTO maintenance (vehicle_id, maintenance_date, description, cost, next_due_date, status) VALUES
+ ((SELECT vehicle_id FROM vehicles WHERE vehicle_number='SM-V-001'), DATE '2025-08-01','AC servicing',8000, DATE '2025-10-01','COMPLETED');
+INSERT INTO maintenance (vehicle_id, maintenance_date, description, cost, next_due_date, status) VALUES
+ ((SELECT vehicle_id FROM vehicles WHERE vehicle_number='SM-M-001'), DATE '2025-09-20','Transmission repair',65000, NULL,'IN_PROGRESS');
+INSERT INTO maintenance (vehicle_id, maintenance_date, description, cost, next_due_date, status) VALUES
+ ((SELECT vehicle_id FROM vehicles WHERE vehicle_number='SM-C-001'), DATE '2025-04-01','Routine service',6000, DATE '2025-10-01','COMPLETED');
+INSERT INTO maintenance (vehicle_id, maintenance_date, description, cost, next_due_date, status) VALUES
+ ((SELECT vehicle_id FROM vehicles WHERE vehicle_number='SM-V-002'), DATE '2025-03-15','Brake pad replacement',12000, DATE '2025-09-15','COMPLETED');
+INSERT INTO maintenance (vehicle_id, maintenance_date, description, cost, next_due_date, status) VALUES
+ ((SELECT vehicle_id FROM vehicles WHERE vehicle_number='SM-B-001'), DATE '2025-01-05','Battery replacement',18000, DATE '2025-09-30','COMPLETED');
